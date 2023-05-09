@@ -72,11 +72,11 @@ Double_t TClingValue::GetAsDouble() const {
 }
 
 Long_t TClingValue::GetAsLong() const {
-   return ToCV().getLongLong();
+   return ToCV().getLL();
 }
 
 ULong_t TClingValue::GetAsUnsignedLong() const {
-   return ToCV().getULongLong();
+   return ToCV().getULL();
 }
 
 void* TClingValue::GetAsPointer() const {

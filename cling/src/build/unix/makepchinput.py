@@ -168,7 +168,7 @@ def getSTLIncludes():
                      "bit",
                      "compare",
                      "concepts",
-                     "coroutine",
+#                     "coroutine",
                      "format",
                      "latch",
                      "numbers",

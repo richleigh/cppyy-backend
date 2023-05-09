@@ -2653,7 +2653,7 @@ intptr_t TCling::ProcessLine(const char* line, int* error_/*=0*/)
        && result.isValid()
        && !result.isVoid())
    {
-      return result.castAs<intptr_t>();
+      return result.simplisticCastAs<intptr_t>();
    }
    return 0;
 }
@@ -3527,7 +3527,7 @@ intptr_t TCling::Calc(const char* line, EErrorCode* error)
    }
 
    RegisterTemporary(valRef);
-   return  valRef.castAs<intptr_t>();
+   return  valRef.simplisticCastAs<intptr_t>();
 }
 
 ////////////////////////////////////////////////////////////////////////////////

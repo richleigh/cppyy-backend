@@ -1,0 +1,53 @@
+diff --git a/cling/src/build/unix/makepchinput.py b/cling/src/build/unix/makepchinput.py
+index 2fc9a56..f8602c7 100755
+--- a/cling/src/build/unix/makepchinput.py
++++ b/cling/src/build/unix/makepchinput.py
+@@ -168,7 +168,7 @@ def getSTLIncludes():
+                      "bit",
+                      "compare",
+                      "concepts",
+-                     "coroutine",
++#                     "coroutine",
+                      "format",
+                      "latch",
+                      "numbers",
+diff --git a/cling/src/core/metacling/src/TCling.cxx b/cling/src/core/metacling/src/TCling.cxx
+index 696cbb6..75e1ab1 100644
+--- a/cling/src/core/metacling/src/TCling.cxx
++++ b/cling/src/core/metacling/src/TCling.cxx
+@@ -2653,7 +2653,7 @@ intptr_t TCling::ProcessLine(const char* line, int* error_/*=0*/)
+        && result.isValid()
+        && !result.isVoid())
+    {
+-      return result.castAs<intptr_t>();
++      return result.simplisticCastAs<intptr_t>();
+    }
+    return 0;
+ }
+@@ -3527,7 +3527,7 @@ intptr_t TCling::Calc(const char* line, EErrorCode* error)
+    }
+ 
+    RegisterTemporary(valRef);
+-   return  valRef.castAs<intptr_t>();
++   return  valRef.simplisticCastAs<intptr_t>();
+ }
+ 
+ ////////////////////////////////////////////////////////////////////////////////
+diff --git a/cling/src/core/metacling/src/TClingValue.cxx b/cling/src/core/metacling/src/TClingValue.cxx
+index 2efb188..cb5064b 100644
+--- a/cling/src/core/metacling/src/TClingValue.cxx
++++ b/cling/src/core/metacling/src/TClingValue.cxx
+@@ -72,11 +72,11 @@ Double_t TClingValue::GetAsDouble() const {
+ }
+ 
+ Long_t TClingValue::GetAsLong() const {
+-   return ToCV().getLongLong();
++   return ToCV().getLL();
+ }
+ 
+ ULong_t TClingValue::GetAsUnsignedLong() const {
+-   return ToCV().getULongLong();
++   return ToCV().getULL();
+ }
+ 
+ void* TClingValue::GetAsPointer() const {
